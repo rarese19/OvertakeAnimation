@@ -145,7 +145,7 @@ void Idle(void) {
 
 It checks if each car is above the top margin of the window, and then sets the translation matrix for each car. At the end, it triggers the <code>RenderFunction</code>.
 
-The <code>UseKeyboard</code> function listens for key strokes, and then switches the idle function if the pressed key is <code>Space</code>
+The <code>UseKeyboard</code> function listens for keystrokes, and then switches the idle function if the pressed key is <code>Space</code>
 
 ```cpp
 void UseKeyboard(unsigned char key, int x, int y) {
@@ -305,7 +305,7 @@ We can see these actions performed in the [Demo](#demo).
 
 ### Texturing
 
-In order th make the cars use their blinkers, I had to create two separate textures that have the blinkers on.
+In order to make the cars use their blinkers, I had to create two separate textures that have the blinkers on.
 
 For each car, I checked to see if the blinkers needed to be used, and then switched between textures.
 
