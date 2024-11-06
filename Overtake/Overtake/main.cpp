@@ -17,21 +17,22 @@ GLuint
 	VboId1, VboId2, VboId3, VboId4,
 	ColorBufferId1, ColorBufferId2,
 	EboId1, EboId2, EboId3, EboId4,
-	TextureId1, TextureId2, TextureId3, TextureId4,
+	TextureId1, TextureId2, TextureId3, TextureId4, TextureId5,
 	ProgramId,
 	myMatrixLocation,
 	codColLocation;
 
-GLuint texture1, texture2, texture3, texture4, codCol;
+GLuint texture1, texture2, texture3, texture4, texture5, codCol;
 
 GLfloat
 	winWidth = 500, winHeight = 800;
 
 glm::mat4
-	myMatrix, resizeMatrix, lineTransMatrix, car1TransMatrix, car2TransMatrix, car1RotationMatrix, car2RotationMatrix, toCenterTransMatrix, fromCenterTransMatrix;
+	myMatrix, resizeMatrix, lineTransMatrix, car1TransMatrix, car2TransMatrix, car1RotationMatrix, car2RotationMatrix, 
+	toCenterTransMatrix, fromCenterTransMatrix, grassTranslationMatrix;
 
-float xMin = -250.f, xMax = 250.f, yMin = -400.f, yMax = 400.f, middleLineY = -420.f, middleLineIncreaseY = 30.0, middleLineYOffset = 0.0,
-car1Y = -400.0, car2Y = -470.0, defaultSpeed = 0.03, carOvertakeSpeed = 0.09, car1YTranslation = 0.0,
+float xMin = -250.f, xMax = 250.f, yMin = -400.f, yMax = 400.f, middleLineY = -420.f, middleLineIncreaseY = 30.0, middleLineYOffset = 0.0, grassYOffset = 0.0,
+car1Y = -400.0, car2Y = -470.0, defaultSpeed = 0.06, carOvertakeSpeed = 0.18, car1YTranslation = 0.0,
 car2YTranslation = 0.0, xOvertakeTranslation = 0.0, car1RotationAngle = 0.0f, car2RotationAngle = 0.0f, rotationSpeed = 0.0002f, 
 car1XCenter = 27.5, car1YCenter = -375.0, car2XCenter = 27.5, car2YCenter = -445.0;
 
@@ -87,6 +88,18 @@ void CreateVAO1(void)
 		0.7f, 0.7f, 0.7f, 1.0f,
 		0.9f, 0.9f, 0.9f, 1.0f,
 	};
+
+	static const GLfloat Textures1[] =
+	{
+		0.0f, 0.0f,
+		1.0f, 0.0f,
+		1.0f, 1.0f,
+		0.0f, 1.0f,	
+		0.0f, 0.0f,
+		1.0f, 0.0f,
+		1.0f, 1.0f,
+		0.0f, 1.0f
+	};
 	
 	static const GLuint Indices1[] =
 	{
@@ -110,10 +123,16 @@ void CreateVAO1(void)
 	glEnableVertexAttribArray(1);
 	glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, 0, 0);
 
+	glGenBuffers(2, &TextureId5);
+	glBindBuffer(GL_ARRAY_BUFFER, TextureId5);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(Textures1), Textures1, GL_STATIC_DRAW);
+
+	glEnableVertexAttribArray(2);
+	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 0, 0);
+
 	glGenBuffers(3, &EboId1);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EboId1);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(Indices1), Indices1, GL_STATIC_DRAW);
- 
 }
 
 void CreateVAO2(void)
@@ -368,8 +387,8 @@ void Overtake(void) {
 	}
 
 	if (counter >= 300.0 && counter <= 400.0 && !overtake) {
-		xOvertakeTranslation -= 0.018;
-		car1XCenter -= 0.018;
+		xOvertakeTranslation -= 0.028;
+		car1XCenter -= 0.028;
 		if (counter >= 350.0) {
 			car1RotationAngle += rotationSpeed;
 		} else {
@@ -386,8 +405,8 @@ void Overtake(void) {
 		fromCenterTransMatrix = glm::mat4(1.0f);
 		car1RotationAngle = 0.0f;
 	} else if (counter >= 0.0 && counter <= 100.0 && !overtake) {
-		xOvertakeTranslation += 0.018;
-		car1XCenter += 0.018;
+		xOvertakeTranslation += 0.028;
+		car1XCenter += 0.028;
 		car1TransMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(xOvertakeTranslation, car1YTranslation, 0.0));
 		if (counter >= 50.0) {
 			car1RotationAngle += rotationSpeed;
@@ -400,7 +419,7 @@ void Overtake(void) {
 	} else if (!overtake) {
 		car1RotationMatrix = glm::mat4(1.0f);
 		car2RotationAngle = 0.0;
-		xOvertakeTranslation = 0.018;
+		xOvertakeTranslation = 0.028;
 		overtake = true;
 		glutIdleFunc(Idle);
 		return;
@@ -410,8 +429,8 @@ void Overtake(void) {
 	}
 
 	if (counter >= 300.0 && counter <= 400.0 && overtake) {
-		xOvertakeTranslation -= 0.018;
-		car2XCenter -= 0.018;
+		xOvertakeTranslation -= 0.028;
+		car2XCenter -= 0.028;
 		car2TransMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(xOvertakeTranslation, car2YTranslation, 0.0));
 		if (counter >= 350.0) {
 			car2RotationAngle += rotationSpeed;
@@ -429,8 +448,8 @@ void Overtake(void) {
 		fromCenterTransMatrix = glm::mat4(1.0f);
 		car2RotationAngle = 0.0f;
 	} else if (counter >= 0.0 && car1Y <= 100.0 && overtake) {
-		xOvertakeTranslation += 0.018;
-		car2XCenter += 0.018;
+		xOvertakeTranslation += 0.028;
+		car2XCenter += 0.028;
 		car2TransMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(xOvertakeTranslation, car2YTranslation, 0.0));
 		if (counter >= 50.0) {
 			car2RotationAngle += rotationSpeed;
@@ -443,7 +462,7 @@ void Overtake(void) {
 	} else if (overtake) {
 		car2RotationMatrix = glm::mat4(1.0f);
 		car2RotationAngle = 0.0;
-		xOvertakeTranslation = 0.018;
+		xOvertakeTranslation = 0.028;
 		overtake = false;	
 		glutIdleFunc(Idle);
 	}
@@ -455,7 +474,7 @@ void Overtake(void) {
 }
 
 // discontinuous line
-void DrawRoadLine(void) {
+void RenderRoadLine(void) {
 	codCol = 3;
 	glUniform1i(codColLocation, codCol);
 	if (middleLineYOffset >= 30.0) {
@@ -473,6 +492,29 @@ void DrawRoadLine(void) {
 	middleLineY = -420.0f;
 	middleLineYOffset += 0.06;
 	lineTransMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(0.0, middleLineIncreaseY, 0.0));
+}
+
+void RenderGrass(void) {
+	if (grassYOffset >= 400.0) {
+		grassYOffset = 0.0;
+	}
+	grassTranslationMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(0.0, -grassYOffset, 0.0));
+	grassYOffset += 0.06;
+
+	glBindVertexArray(VaoId1);
+	codCol = 4;
+	glUniform1i(codCol, codCol);
+	myMatrix = resizeMatrix * grassTranslationMatrix;
+	glUniformMatrix4fv(myMatrixLocation, 1, GL_FALSE, &myMatrix[0][0]);
+	glBindTexture(GL_TEXTURE_2D, texture5);
+	glDrawElements(GL_POLYGON, 4, GL_UNSIGNED_INT, (void*)(0));
+	glDrawElements(GL_POLYGON, 4, GL_UNSIGNED_INT, (void*)(4 * sizeof(GLuint)));
+
+	grassTranslationMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(0.0, 400 - grassYOffset, 0.0));
+	myMatrix = resizeMatrix * grassTranslationMatrix;
+	glUniformMatrix4fv(myMatrixLocation, 1, GL_FALSE, &myMatrix[0][0]);
+	glDrawElements(GL_POLYGON, 4, GL_UNSIGNED_INT, (void*)(0));
+	glDrawElements(GL_POLYGON, 4, GL_UNSIGNED_INT, (void*)(4 * sizeof(GLuint)));
 }
 
 void UseKeyboard(unsigned char key, int x, int y) {
@@ -501,6 +543,7 @@ void Initialize(void)
 	LoadTexture("car2.png", texture2);
 	LoadTexture("car1blinker.png", texture3);
 	LoadTexture("car2blinker.png", texture4);
+	LoadTexture("grass.png", texture5);
 
 	CreateShaders();
 
@@ -511,6 +554,7 @@ void Initialize(void)
 	lineTransMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(0.0, middleLineIncreaseY, 0.0));
 	car1TransMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(0.0, car1YTranslation, 0.0));
 	car2TransMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(0.0, car2YTranslation, 0.0));
+	grassTranslationMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(0.0, -grassYOffset, 0.0));
 
 	car1RotationMatrix = glm::mat4(1.0f);
 	car2RotationMatrix = glm::mat4(1.0f);
@@ -521,27 +565,22 @@ void Initialize(void)
 void RenderFunction(void)
 {
 	glClear(GL_COLOR_BUFFER_BIT);
+	glActiveTexture(GL_TEXTURE0);
 
-	myMatrix = resizeMatrix;
-	glUniformMatrix4fv(myMatrixLocation, 1, GL_FALSE, &myMatrix[0][0]);
-
-	// both sides of the grass
-	glBindVertexArray(VaoId1);
-	codCol = 1;
-	glUniform1i(codColLocation, codCol);
-	glDrawElements(GL_TRIANGLE_FAN, 4, GL_UNSIGNED_INT, (void*)(0));
-	glDrawElements(GL_TRIANGLE_FAN, 4, GL_UNSIGNED_INT, (void*)(4 * sizeof(GLuint)));
+	// function that renders both sides of the grass
+	RenderGrass();
 
 	// the road
+	myMatrix = resizeMatrix;
+	glUniformMatrix4fv(myMatrixLocation, 1, GL_FALSE, &myMatrix[0][0]);
 	glBindVertexArray(VaoId2);
 	codCol = 2;
 	glUniform1i(codColLocation, codCol);
 	glDrawElements(GL_TRIANGLE_FAN, 4, GL_UNSIGNED_INT, (void*)(0));
 
 	// function that renders the discontinuous line
-	DrawRoadLine();
+	RenderRoadLine();
 
-	glActiveTexture(GL_TEXTURE0);
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 

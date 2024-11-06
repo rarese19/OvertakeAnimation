@@ -9,21 +9,22 @@
   C:SOIL.dll
   1 File(s) copied
   main.cpp
-C:\Users\rares\Desktop\Grafica pe Calculator\OvertakeAnimation\Overtake\Overtake\main.cpp(34,46): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\rares\Desktop\Grafica pe Calculator\OvertakeAnimation\Overtake\Overtake\main.cpp(34,71): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\rares\Desktop\Grafica pe Calculator\OvertakeAnimation\Overtake\Overtake\main.cpp(379,27): warning C4305: '-=': truncation from 'double' to 'float'
-C:\Users\rares\Desktop\Grafica pe Calculator\OvertakeAnimation\Overtake\Overtake\main.cpp(380,18): warning C4305: '-=': truncation from 'double' to 'float'
-C:\Users\rares\Desktop\Grafica pe Calculator\OvertakeAnimation\Overtake\Overtake\main.cpp(397,27): warning C4305: '+=': truncation from 'double' to 'float'
-C:\Users\rares\Desktop\Grafica pe Calculator\OvertakeAnimation\Overtake\Overtake\main.cpp(398,18): warning C4305: '+=': truncation from 'double' to 'float'
-C:\Users\rares\Desktop\Grafica pe Calculator\OvertakeAnimation\Overtake\Overtake\main.cpp(411,26): warning C4305: '=': truncation from 'double' to 'float'
-C:\Users\rares\Desktop\Grafica pe Calculator\OvertakeAnimation\Overtake\Overtake\main.cpp(421,27): warning C4305: '-=': truncation from 'double' to 'float'
-C:\Users\rares\Desktop\Grafica pe Calculator\OvertakeAnimation\Overtake\Overtake\main.cpp(422,18): warning C4305: '-=': truncation from 'double' to 'float'
-C:\Users\rares\Desktop\Grafica pe Calculator\OvertakeAnimation\Overtake\Overtake\main.cpp(440,27): warning C4305: '+=': truncation from 'double' to 'float'
-C:\Users\rares\Desktop\Grafica pe Calculator\OvertakeAnimation\Overtake\Overtake\main.cpp(441,18): warning C4305: '+=': truncation from 'double' to 'float'
-C:\Users\rares\Desktop\Grafica pe Calculator\OvertakeAnimation\Overtake\Overtake\main.cpp(454,26): warning C4305: '=': truncation from 'double' to 'float'
-C:\Users\rares\Desktop\Grafica pe Calculator\OvertakeAnimation\Overtake\Overtake\main.cpp(481,23): warning C4305: '+=': truncation from 'double' to 'float'
-C:\Users\rares\Desktop\Grafica pe Calculator\OvertakeAnimation\Overtake\Overtake\main.cpp(612,31): warning C4244: 'argument': conversion from 'GLfloat' to 'int', possible loss of data
-C:\Users\rares\Desktop\Grafica pe Calculator\OvertakeAnimation\Overtake\Overtake\main.cpp(612,21): warning C4244: 'argument': conversion from 'GLfloat' to 'int', possible loss of data
+C:\Users\rares\Desktop\Grafica pe Calculator\OvertakeAnimation\Overtake\Overtake\main.cpp(35,46): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\rares\Desktop\Grafica pe Calculator\OvertakeAnimation\Overtake\Overtake\main.cpp(35,71): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\rares\Desktop\Grafica pe Calculator\OvertakeAnimation\Overtake\Overtake\main.cpp(390,27): warning C4305: '-=': truncation from 'double' to 'float'
+C:\Users\rares\Desktop\Grafica pe Calculator\OvertakeAnimation\Overtake\Overtake\main.cpp(391,18): warning C4305: '-=': truncation from 'double' to 'float'
+C:\Users\rares\Desktop\Grafica pe Calculator\OvertakeAnimation\Overtake\Overtake\main.cpp(408,27): warning C4305: '+=': truncation from 'double' to 'float'
+C:\Users\rares\Desktop\Grafica pe Calculator\OvertakeAnimation\Overtake\Overtake\main.cpp(409,18): warning C4305: '+=': truncation from 'double' to 'float'
+C:\Users\rares\Desktop\Grafica pe Calculator\OvertakeAnimation\Overtake\Overtake\main.cpp(422,26): warning C4305: '=': truncation from 'double' to 'float'
+C:\Users\rares\Desktop\Grafica pe Calculator\OvertakeAnimation\Overtake\Overtake\main.cpp(432,27): warning C4305: '-=': truncation from 'double' to 'float'
+C:\Users\rares\Desktop\Grafica pe Calculator\OvertakeAnimation\Overtake\Overtake\main.cpp(433,18): warning C4305: '-=': truncation from 'double' to 'float'
+C:\Users\rares\Desktop\Grafica pe Calculator\OvertakeAnimation\Overtake\Overtake\main.cpp(451,27): warning C4305: '+=': truncation from 'double' to 'float'
+C:\Users\rares\Desktop\Grafica pe Calculator\OvertakeAnimation\Overtake\Overtake\main.cpp(452,18): warning C4305: '+=': truncation from 'double' to 'float'
+C:\Users\rares\Desktop\Grafica pe Calculator\OvertakeAnimation\Overtake\Overtake\main.cpp(465,26): warning C4305: '=': truncation from 'double' to 'float'
+C:\Users\rares\Desktop\Grafica pe Calculator\OvertakeAnimation\Overtake\Overtake\main.cpp(493,23): warning C4305: '+=': truncation from 'double' to 'float'
+C:\Users\rares\Desktop\Grafica pe Calculator\OvertakeAnimation\Overtake\Overtake\main.cpp(502,18): warning C4305: '+=': truncation from 'double' to 'float'
+C:\Users\rares\Desktop\Grafica pe Calculator\OvertakeAnimation\Overtake\Overtake\main.cpp(649,31): warning C4244: 'argument': conversion from 'GLfloat' to 'int', possible loss of data
+C:\Users\rares\Desktop\Grafica pe Calculator\OvertakeAnimation\Overtake\Overtake\main.cpp(649,21): warning C4244: 'argument': conversion from 'GLfloat' to 'int', possible loss of data
   Overtake.vcxproj -> C:\Users\rares\Desktop\Grafica pe Calculator\OvertakeAnimation\Overtake\x64\Debug\Overtake.exe
   0 File(s) copied
   0 File(s) copied

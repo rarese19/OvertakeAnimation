@@ -107,6 +107,37 @@ void DrawRoadLine(void) {
 
 The function above is called in the <code>RenderFunction</code>, which is the <code>glutDisplayFunc</code>.
 
+### The grass
+
+To render the grass texture and make it continuous, it is rendered two times for each side. 
+
+For one side, there is an object rendered two times, one time on top and one below, and both use the same offset.
+
+```cpp
+void RenderGrass(void) {
+	if (grassYOffset >= 400.0) {
+		grassYOffset = 0.0;
+	}
+	grassTranslationMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(0.0, -grassYOffset, 0.0));
+	grassYOffset += 0.06;
+
+	glBindVertexArray(VaoId1);
+	codCol = 4;
+	glUniform1i(codCol, codCol);
+	myMatrix = resizeMatrix * grassTranslationMatrix;
+	glUniformMatrix4fv(myMatrixLocation, 1, GL_FALSE, &myMatrix[0][0]);
+	glBindTexture(GL_TEXTURE_2D, texture5);
+	glDrawElements(GL_POLYGON, 4, GL_UNSIGNED_INT, (void*)(0));
+	glDrawElements(GL_POLYGON, 4, GL_UNSIGNED_INT, (void*)(4 * sizeof(GLuint)));
+
+	grassTranslationMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(0.0, 400 - grassYOffset, 0.0));
+	myMatrix = resizeMatrix * grassTranslationMatrix;
+	glUniformMatrix4fv(myMatrixLocation, 1, GL_FALSE, &myMatrix[0][0]);
+	glDrawElements(GL_POLYGON, 4, GL_UNSIGNED_INT, (void*)(0));
+	glDrawElements(GL_POLYGON, 4, GL_UNSIGNED_INT, (void*)(4 * sizeof(GLuint)));
+}
+```
+
 ### Cars
 
 In order to render the cars, I used 2 functions: <code>Idle</code> and <code>Overtake</code>. 
