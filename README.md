@@ -176,7 +176,7 @@ void Idle(void) {
 
 It checks if each car is above the top margin of the window, and then sets the translation matrix for each car. At the end, it triggers the <code>RenderFunction</code>.
 
-The <code>UseKeyboard</code> function listens for keystrokes, and then switches the idle function if the pressed key is <code>Space</code>
+The <code>UseKeyboard</code> function listens for keystrokes, and then switches the idle function if the pressed key is <code>Space</code>.
 
 ```cpp
 void UseKeyboard(unsigned char key, int x, int y) {
@@ -329,7 +329,7 @@ First, the car overtaking moves on the other lane. This implies the vertical tra
 
 When the car is fully positioned, it accelerates and goes at a faster speed than the car in front of it. This requires a vertical translation but at a faster rate.
 
-Lastly, the car returns to it's lane. To do so, it needs the vertical translation (back at original speed), horizontal translation back to the lane and incremental rotation.
+Lastly, the car returns to it's lane. To do so, it needs the vertical translation (back at original speed), horizontal translation back to the lane and incremental rotation. When a car finishes it's overtake, the <code>glutIdleFunc</code> is set back to <code>Idle</code>.
 
 We can see these actions performed in the [Demo](#demo).
 
